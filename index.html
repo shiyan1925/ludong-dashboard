@@ -34,7 +34,9 @@ th { background:var(--p); color:#fff; }
 tr:nth-child(even) td { background:#F5F8FD; }
 .table-wrap { overflow-x:auto; }
 .mask { position:fixed; inset:0; background:#fff; display:flex; align-items:center; justify-content:center; z-index:99; }
-.mask .box { width:300px; }
+.mask .box { width:min(340px, 90vw); }
+.mask .box h2 { font-size:16px; white-space:nowrap; text-align:center; }
+.mask .box .sub { text-align:center; white-space:nowrap; }
 .mask input { width:100%; padding:10px; margin:8px 0; border:1px solid var(--bd); border-radius:8px; font-size:15px; }
 .mask button { width:100%; padding:10px; background:var(--p); color:#fff; border:0; border-radius:8px; font-size:15px; cursor:pointer; }
 .err { color:var(--red); font-size:13px; }
