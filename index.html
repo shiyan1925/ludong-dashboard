@@ -94,7 +94,7 @@ function renderKpis() {
   const a = DATA.agg[activeEntity()] || DATA.agg["鲁东大区"];
   const kpis = [
     ["本月销量", a.sales_m, "订交比 " + (a.ratio ?? "—"), ""],
-    ["销量环比", fmt(a.sales_mq, true), "较上月同期", vc(a.sales_mq)],
+    ["本月销量环比", fmt(a.sales_mq, true), "较上月同期", vc(a.sales_mq)],
     ["本月订单", a.orders_m, "订单环比 " + fmt(a.orders_mq, true), ""],
     ["本周销量", a.sales_w, "本周订单 " + a.orders_w, ""],
     ["本周销量环比", fmt(a.sales_wq, true), "较上周同期", vc(a.sales_wq)],
