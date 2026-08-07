@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>鲁东大区 · 销售数据（管理端）</title>
+<title>鲁东大区订销数据看板 · 管理端</title>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <style>
 :root { --p:#1E40AF; --s:#3B82F6; --a:#D97706; --bg:#F8FAFC; --bd:#DBEAFE; --red:#DC2626; --green:#15803D; }
@@ -37,8 +37,8 @@ tr:nth-child(even) td { background:#F5F8FD; }
 </style>
 </head>
 <body>
-<div id="mask" class="mask"><div class="box"><h2>鲁东大区 · 销售数据（管理端）</h2><p class="sub">请输入访问密码后查看</p><input type="password" id="pwd" placeholder="访问密码"><button onclick="unlock()">进入</button><p id="perr" class="err"></p></div></div>
-<h1>鲁东大区 · 销售数据（管理端）</h1><p class="sub">数据截至 <span id="asof"></span></p>
+<div id="mask" class="mask"><div class="box"><h2>鲁东大区订销数据看板 · 管理端</h2><p class="sub">请输入访问密码后查看</p><input type="password" id="pwd" placeholder="访问密码"><button onclick="unlock()">进入</button><p id="perr" class="err"></p></div></div>
+<h1>鲁东大区订销数据看板 · 管理端</h1><p class="sub">数据截至 <span id="asof"></span></p>
 <div id="nav"><button class="nav" data-v="总览">总览</button><button class="nav" data-v="订单">订单</button><button class="nav" data-v="销量">销量</button><button class="nav" data-v="大唐">大唐</button><button class="nav" data-v="数据">数据</button></div>
 <section id="v-总览" class="view on">
   <div class="kpis" id="kpis"></div>
