@@ -93,19 +93,20 @@ function activeEntity() {
   return "鲁东大区";
 }
 let trendChart = null, groupChart = null;
+function vc(x) { return (x !== null && x !== undefined) ? (x < 0 ? "green" : "red") : ""; }
 function renderKpis() {
   const a = DATA.agg[activeEntity()] || DATA.agg["鲁东大区"];
   const kpis = [
-    ["本月销量", a.sales_m, "订交比 " + (a.ratio ?? "—")],
-    ["销量环比", fmt(a.sales_mq, true), "较上月同期"],
-    ["本月订单", a.orders_m, "订单环比 " + fmt(a.orders_mq, true)],
-    ["本周销量", a.sales_w, "本周订单 " + a.orders_w],
-    ["本周销量环比", fmt(a.sales_wq, true), "较上周同期"],
-    ["本周订单", a.orders_w, "订单环比(周) " + fmt(a.orders_wq, true)],
-    ["大唐EV已订", a.da_done, "目标 " + a.da_goal],
-    ["大唐完成率", fmt(a.da_rate), "差额 " + a.da_diff],
+    ["本月销量", a.sales_m, "订交比 " + (a.ratio ?? "—"), ""],
+    ["销量环比", fmt(a.sales_mq, true), "较上月同期", vc(a.sales_mq)],
+    ["本月订单", a.orders_m, "订单环比 " + fmt(a.orders_mq, true), ""],
+    ["本周销量", a.sales_w, "本周订单 " + a.orders_w, ""],
+    ["本周销量环比", fmt(a.sales_wq, true), "较上周同期", vc(a.sales_wq)],
+    ["本周订单", a.orders_w, "订单环比(周) " + fmt(a.orders_wq, true), ""],
+    ["大唐EV已订", a.da_done, "目标 " + a.da_goal, ""],
+    ["大唐完成率", fmt(a.da_rate), "差额 " + a.da_diff, ""],
   ];
-  const box = k => `<div class="kpi"><div class="t">${k[0]}</div><div class="v">${k[1]}</div><div class="d">${k[2]}</div></div>`;
+  const box = k => `<div class="kpi"><div class="t">${k[0]}</div><div class="v ${k[3]}">${k[1]}</div><div class="d">${k[2]}</div></div>`;
   document.getElementById("kpis").innerHTML =
     kpis.slice(0, 6).map(box).join("") +
     `<div class="wide">${box(kpis[6])}${box(kpis[7])}</div>`;
@@ -132,7 +133,7 @@ function renderGroup() {
     tooltip: { trigger: "axis", axisPointer: { type: "shadow" } },
     legend: { data: ["销量", "订单"], top: 0 },
     xAxis: { type: "value", splitLine: { lineStyle: { color: C.bd } } },
-    yAxis: { type: "category", data: g.map(x => x.name) },
+    yAxis: { type: "category", inverse: true, data: g.map(x => x.name) },
     series: [
       { name: "销量", type: "bar", data: g.map(x => x.sales), itemStyle: { color: C.p }, label: { show: true, position: "right", fontSize: 10 } },
       { name: "订单", type: "bar", data: g.map(x => x.orders), itemStyle: { color: C.a }, label: { show: true, position: "right", fontSize: 10 } },
