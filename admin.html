@@ -6,9 +6,13 @@
 <title>鲁东大区订销数据看板 · 管理端</title>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <style>
-:root { --p:#1E40AF; --s:#3B82F6; --a:#D97706; --bg:#F8FAFC; --bd:#DBEAFE; --red:#DC2626; --green:#15803D; }
+:root { --p:#C8102E; --p2:#8F0E22; --s:#E8483A; --a:#D9A441; --bg:#FDF6F5; --bd:#F0C9CD; --red:#C8102E; --green:#15803D; --txt:#5B0F1C; }
 * { box-sizing:border-box; margin:0; padding:0; }
 body { font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; background:var(--bg); color:#1E3A8A; padding:12px; }
+body { color:var(--txt); }
+.head { background:linear-gradient(135deg,#C8102E,#A00D24); margin:-12px -12px 14px; padding:16px 14px; border-radius:0 0 16px 16px; color:#fff; box-shadow:0 2px 8px rgba(200,16,46,.25); }
+.head h1 { font-size:20px; color:#fff; }
+.head .sub { color:#FFD9D9; }
 h1 { font-size:20px; }
 .sub { color:#6B7280; font-size:12px; margin:4px 0 10px; }
 .nav { border:1px solid var(--bd); background:#fff; padding:7px 14px; border-radius:8px; margin:0 4px 8px 0; cursor:pointer; font-size:14px; color:#1E3A8A; }
@@ -18,14 +22,14 @@ h1 { font-size:20px; }
 .kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:10px 0; }
 .kpi { background:#fff; border:1px solid var(--bd); border-radius:10px; padding:10px; }
 .kpi .t { font-size:12px; color:#6B7280; }
-.kpi .v { font-size:20px; font-weight:700; margin-top:2px; }
+.kpi .v { font-size:20px; font-weight:700; margin-top:2px; color:var(--p); }
 .kpi .d { font-size:11px; color:#9CA3AF; }
 .card { background:#fff; border:1px solid var(--bd); border-radius:10px; padding:10px; margin-bottom:10px; }
 .card h3 { font-size:15px; margin-bottom:6px; }
 .chart { width:100%; height:300px; }
 table { width:100%; border-collapse:collapse; font-size:12px; }
 th,td { border:1px solid var(--bd); padding:5px 6px; text-align:left; white-space:nowrap; }
-th { background:#8EAADB; color:#fff; }
+th { background:var(--p); color:#fff; }
 tr:nth-child(even) td { background:#F5F8FD; }
 .table-wrap { overflow-x:auto; }
 .mask { position:fixed; inset:0; background:#fff; display:flex; align-items:center; justify-content:center; z-index:99; }
@@ -40,7 +44,7 @@ tr:nth-child(even) td { background:#F5F8FD; }
 </head>
 <body>
 <div id="mask" class="mask"><div class="box"><h2>鲁东大区订销数据看板 · 管理端</h2><p class="sub">请输入访问密码后查看</p><input type="password" id="pwd" placeholder="访问密码"><button onclick="unlock()">进入</button><p id="perr" class="err"></p></div></div>
-<h1>鲁东大区订销数据看板 · 管理端</h1><p class="sub">数据截至 <span id="asof"></span></p>
+<div class="head"><h1>鲁东大区订销数据看板 · 管理端</h1><p class="sub">数据截至 <span id="asof"></span></p></div>
 <div id="nav"><button class="nav" data-v="总览">总览</button><button class="nav" data-v="订单">订单</button><button class="nav" data-v="销量">销量</button><button class="nav" data-v="大唐">大唐</button><button class="nav" data-v="数据">数据</button></div>
 <div class="card" id="filters">
   <h3>筛选条件</h3>
@@ -78,7 +82,7 @@ function unlock() {
 if (!unlocked) document.getElementById("pwd").addEventListener("keydown", e => { if (e.key === "Enter") unlock(); });
 function fmt(x, sign) { return x === null || x === undefined ? "—" : (sign && x > 0 ? "+" : "") + x.toFixed(2) + "%"; }
 function esc(s) { return String(s ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
-const C = { p:"#1E40AF", s:"#3B82F6", a:"#D97706", bd:"#DBEAFE", bg:"#F8FAFC" };
+const C = { p:"#C8102E", s:"#E8483A", a:"#D9A441", bd:"#F0C9CD", bg:"#FDF6F5" };
 function ech(dom) { const c = echarts.init(dom); return c; }
 document.getElementById("asof").textContent = DATA.as_of;
 // KPI
